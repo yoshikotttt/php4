@@ -7,7 +7,9 @@ $target_id = $_GET["id"];
 // 1.DB接続します 
 try {
     //Password:MAMP='root',XAMPP='' //さくらのパスワードが必要
-    $pdo = new PDO('mysql:dbname=$database_name;charset=utf8;host=localhost', 'root', $database_password); //$pdoにデータが入ってくる
+    $pdo = new PDO("mysql:dbname={$database_name};charset=utf8;host={$host}", $user_id, $database_password); //$pdoにデータが入ってくる
+  
+
 } catch (PDOException $e) {
     exit('DBConnectError:' . $e->getMessage());
 }

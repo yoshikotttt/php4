@@ -1,5 +1,7 @@
 <?php
 
+require_once('config.php');
+
 //POSTデータ取得
 // $image = $_POST["image"];
 $title = $_POST["title"];
@@ -17,14 +19,14 @@ $link = $_POST["link"];
 //2. DB接続します (どこを変えるかをわかっていれば大丈夫)
 try {
     //Password:MAMP='root',XAMPP='' //さくらのパスワードが必要
-    $pdo = new PDO('mysql:dbname=$database_name;charset=utf8;host=localhost', 'root', $database_password); //$pdoにデータが入ってくる
+    $pdo = new PDO("mysql:dbname={$database_name};charset=utf8;host={$host}", $user_id, $database_password); //$pdoにデータが入ってくる
   } catch (PDOException $e) {
       exit('DBConnectError:' . $e->getMessage());
   }
 
 //３．データ登録SQL作成  セレクト文    バインドバリューとプリペアでデータを無効化したりして守る 変数入れない！
 //ここが一番大変
-$sql  = "INSERT INTO php4_recipe_table(title,material,amount,height,width,depth,recipe,link,indate)VALUES(:title,:material,:amount,:height,:width,:depth,:recipe,:link,sysdate());";
+$sql  = "INSERT INTO $table_name(title,material,amount,height,width,depth,recipe,link,indate)VALUES(:title,:material,:amount,:height,:width,:depth,:recipe,:link,sysdate());";
 $stmt = $pdo->prepare($sql); //prepareにINSERTのデータを渡したところ
 // 無効化した値を渡すあぶないデータを無効化して橋渡ししてくれる
 // $stmt->bindValue(':image',   $image,  PDO::PARAM_LOB);  //Integer（数値の場合 PDO::PARAM_INT)

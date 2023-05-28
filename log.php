@@ -5,13 +5,13 @@ require_once('config.php');
 // 1.DB接続します 
 try {
     //Password:MAMP='root',XAMPP='' //さくらのパスワードが必要
-    $pdo = new PDO('mysql:dbname=$database_name;charset=utf8;host=localhost', 'root', $database_password); //$pdoにデータが入ってくる
+    $pdo = new PDO("mysql:dbname={$database_name};charset=utf8;host={$host}", $user_id, $database_password); //$pdoにデータが入ってくる
 } catch (PDOException $e) {
     exit('DBConnectError:' . $e->getMessage());
 }
 
 //２．データ取得SQL作成
-$sql = "SELECT * FROM php4_recipe_table";  //sqlを作って下で代入できるようにしている
+$sql = "SELECT * FROM $table_name";  //sqlを作って下で代入できるようにしている
 //もしデータが大量にある場合は上記にリミットをつけたりする
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
