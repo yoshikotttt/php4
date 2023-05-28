@@ -1,0 +1,12 @@
+index.php （html
+input.php（html）
+log.php(db接続 ,sqlデータ取得,html)
+select.php（ldb接続 ,sqlデータ取得,html）
+insert.php（DB登録用,php）
+
+
+index.php: メインページで、input.phpとlog.phpへのリンクを表示します。
+input.php: 入力フォームが表示され、ユーザーはレシピの情報を入力します。データの送信先はinsert.phpです。
+log.php: データベースに保存されたレシピの一覧を表示します。DBへの接続、データの取得、表示の処理が含まれます。
+select.php: log.phpで表示されたレシピの中から特定のレシピを選択した際に、そのレシピの詳細情報を表示します。DBへの接続、データの取得、表示の処理が含まれます。
+insert.php: 入力フォームから送信されたデータをデータベースに登録する処理が行われます。
