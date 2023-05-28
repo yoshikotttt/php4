@@ -1,4 +1,9 @@
 <?php
+ini_set("display_errors",1);
+
+function h($val){
+    return  htmlspecialchars($val,ENT_QUOTES);
+    }
 
 require_once('config.php');
 
@@ -27,6 +32,8 @@ if ($status == false) {
 $values =  $stmt->fetchAll(PDO::FETCH_ASSOC); //PDO::FETCH_ASSOC[カラム名のみで取得できるモード]
 //JSONに値を渡す場合に使う
 $json = json_encode($values, JSON_UNESCAPED_UNICODE);
+
+
 
 ?>
 
@@ -78,9 +85,9 @@ $json = json_encode($values, JSON_UNESCAPED_UNICODE);
             <h2><?= $v["id"] ?></h2>
             <a href="select.php?id=<?= $v["id"] ?>">
                 <div class="box">
-                    <div class="title">レシピ名：<?= $v["title"] ?></div>
-                    <div class="size">サイズ：<?= $v["height"] ?>×<?= $v["width"] ?>×<?= $v["depth"] ?></div>
-                    <div class="date">登録日：<?= $v["indate"] ?></div>
+                    <div class="title">レシピ名：<?= h($v["title"]) ?></div>
+                    <div class="size">サイズ：<?= h($v["height"]) ?>×<?= $v["width"] ?>×<?= $v["depth"] ?></div>
+                    <div class="date">登録日：<?= h($v["indate"]) ?></div>
                 </div>
             </a>
 

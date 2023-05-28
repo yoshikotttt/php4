@@ -1,4 +1,9 @@
 <?php
+ini_set("display_errors",1);
+
+function h($val){
+    return  htmlspecialchars($val,ENT_QUOTES);
+    }
 
 require_once('config.php');
 
@@ -58,13 +63,13 @@ $row = $target_data[0];
 <body>
     <a href="index.php">TOP</a>
     <div class="wrapper2">
-        <div class="title">レシピ名：<?= $row["title"]; ?></div>
-        <div class="material">材料１：<?= $row["material"]; ?></div>
-        <div class="amount">材料２：<?= $row["amount"]; ?></div>
-        <div class="recipe">作り方：<?= $row["recipe"]; ?></div>
-        <div class="link">参考サイト：<?= $row["link"]; ?></div>
-        <div class="size">サイズ：<?= $row["height"] ?>×<?= $row["width"] ?>×<?= $row["depth"] ?></div>
-        <div class="date">登録日：<?= $row["indate"] ?></div>
+        <div class="title">レシピ名：<?= h($row["title"]); ?></div>
+        <div class="material">材料１：<?= h($row["material"]); ?></div>
+        <div class="amount">材料２：<?= h($row["amount"]); ?></div>
+        <div class="recipe">作り方：<?= h($row["recipe"]); ?></div>
+        <div class="link">参考サイト：<?= h($row["link"]); ?></div>
+        <div class="size">サイズ：<?= h($row["height"]); ?>×<?= h($row["width"]); ?>×<?= h($row["depth"]); ?></div>
+        <div class="date">登録日：<?= h($row["indate"]); ?></div>
     </div>
 
 </body>
