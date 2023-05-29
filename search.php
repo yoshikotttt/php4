@@ -83,7 +83,7 @@ $json = json_encode($row, JSON_UNESCAPED_UNICODE);
 <body>
     <a href="index.php">TOP</a>
     <h2>検索結果</h2>
-    <?php foreach ($values as $data) { ?>
+    <?php foreach ($row as $data) { ?>
 
         <h2><?= $data["id"] ?></h2>
         <a href="select.php?id=<?= $data["id"] ?>">
