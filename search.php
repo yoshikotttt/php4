@@ -20,10 +20,10 @@ try {
 
 
 //２．データ取得SQL作成
-$sql = "SELECT * FROM $table_name WHERE title LIKE '%$keyword%'";  //sqlを作って下で代入できるようにしている
+$sql = "SELECT * FROM $table_name WHERE title LIKE :keyword";  //sqlを作って下で代入できるようにしている
 //もしデータが大量にある場合は上記にリミットをつけたりする
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':keyword', $keyword, PDO::PARAM_STR);
+$stmt->bindValue(':keyword', "%{$keyword}%", PDO::PARAM_STR);
 $status = $stmt->execute();
 
 //３.データ表示
@@ -39,9 +39,7 @@ $row =  $stmt->fetchAll(PDO::FETCH_ASSOC); //PDO::FETCH_ASSOC[カラム名のみ
 //JSONに値を渡す場合に使う 基本はencodeまでやる...?
 $json = json_encode($row, JSON_UNESCAPED_UNICODE);
 
-// print_r($row);
 
-$row = $keyword[0];
 ?>
 
 <!DOCTYPE html>
@@ -56,20 +54,43 @@ $row = $keyword[0];
         body {
             background-color: #fcecea;
         }
+        .box {
+            display: inline-block;
+            border-radius: 5px;
+            width: 300px;
+            height: 80px;
+            margin-bottom: 10px;
+            background-color: #ffb2ae;
+            padding: 10px;
+        }
+
+        h2 {
+           margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 
 <body>
     <a href="index.php">TOP</a>
     <h2>検索結果</h2>
-    <?php foreach ($values as $v) { ?>
+    <?php foreach ($values as $data) { ?>
 
-        <h2><?= $v["id"] ?></h2>
-        <a href="select.php?id=<?= $v["id"] ?>">
+        <h2><?= $data["id"] ?></h2>
+        <a href="select.php?id=<?= $data["id"] ?>">
             <div class="box">
-                <div class="title">レシピ名：<?= h($v["title"]) ?></div>
-                <div class="size">サイズ：<?= h($v["height"]) ?>×<?= $v["width"] ?>×<?= $v["depth"] ?></div>
-                <div class="date">登録日：<?= h($v["indate"]) ?></div>
+                <div class="title">レシピ名：<?= h($data["title"]) ?></div>
+                <div class="size">サイズ：<?= h($data["height"]) ?>×<?= $data["width"] ?>×<?= $data["depth"] ?></div>
+                <div class="date">登録日：<?= h($data["indate"]) ?></div>
             </div>
         </a>
 
