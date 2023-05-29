@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+<a href="index.php">TOP</a>
     <form action="search.php" method="post">
         <input type="text " name="keyword" placeholder="キーワードを入力してください">
         <button type="submit">検索</button>

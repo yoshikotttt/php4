@@ -20,7 +20,7 @@ try {
 
 
 //２．データ取得SQL作成
-$sql = "SELECT * FROM $table_name WHERE title LIKE :keyword";  //sqlを作って下で代入できるようにしている
+$sql = "SELECT * FROM $table_name WHERE title LIKE $keyword";  //sqlを作って下で代入できるようにしている
 //もしデータが大量にある場合は上記にリミットをつけたりする
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':keyword', $keyword, PDO::PARAM_STR);
@@ -33,7 +33,7 @@ if ($status == false) {
     exit("データが見つかりませんでした" . $error[2]);
 }
 
-//３．データ表示
+
 //全データ取得 オブジェクトとして入ってくる データベースに接続して持ってくる
 $row =  $stmt->fetchAll(PDO::FETCH_ASSOC); //PDO::FETCH_ASSOC[カラム名のみで取得できるモード]
 //JSONに値を渡す場合に使う 基本はencodeまでやる...?
