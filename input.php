@@ -49,7 +49,7 @@
 
         .box4 textarea {
             width: 350px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             outline: none;
             border: none;
             border-radius: 5px;
@@ -58,7 +58,7 @@
 
         .box5 input {
             width: 350px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             font-size: 17px;
         }
     </style>
