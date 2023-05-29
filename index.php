@@ -38,6 +38,9 @@
     <div class="box">
         <a href="log.php">レシピを見る</a>
     </div>
+    <div class="box">
+        <a href="like.php">あいまい検索</a>
+    </div>
 </body>
 
 </html>
