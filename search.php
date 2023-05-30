@@ -60,7 +60,7 @@ $json = json_encode($row, JSON_UNESCAPED_UNICODE);
             width: 300px;
             height: 80px;
             margin-bottom: 10px;
-            background-color: #ffb2ae;
+            background-color: #abcae8;
             padding: 10px;
         }
 
